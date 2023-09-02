@@ -5,7 +5,12 @@ import { CircularProgress } from '@mui/material';
 import getAddress, { Address } from '../utils/address';
 import SingleAddress from './SingleAddress';
 
-const AddressSelect: React.FC = observer(() => {
+interface AddressSelectProps {
+  success: boolean
+}
+
+
+const AddressSelect: React.FC<AddressSelectProps> = observer(({success}) => {
   const centralStore = store
   const [address, setAddress] = useState<Array<Address>>();
   const [error, setError] = useState('')
@@ -14,7 +19,7 @@ const AddressSelect: React.FC = observer(() => {
   useEffect(() => {
     async function fetchAddress(){
         try{
-            const data = await getAddress(true);
+            const data = await getAddress(success);
             setAddress(data as Array<Address>);
         }catch(err){
             setError(err as string)

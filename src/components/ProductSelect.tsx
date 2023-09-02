@@ -5,7 +5,11 @@ import getProducts, { Product } from '../utils/products';
 import { CircularProgress } from '@mui/material';
 import SingleProduct from './SingleProduct';
 
-const ProductSelect: React.FC = observer(() => {
+interface ProductSelectProps {
+  success: boolean
+}
+
+const ProductSelect: React.FC<ProductSelectProps> = observer(({ success }) => {
   const centralStore = store
   const [products, setProducts] = useState<Array<Product>>()
   const [error, setError] = useState('')
@@ -14,7 +18,7 @@ const ProductSelect: React.FC = observer(() => {
   useEffect(() => {
     async function fetchProducts(){
         try{
-            const data = await getProducts(true);
+            const data = await getProducts(success);
             setProducts(data as Array<Product>);
         }catch(err){
             setError(err as string)
