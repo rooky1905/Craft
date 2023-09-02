@@ -26,7 +26,7 @@ const AddressSelect: React.FC<AddressSelectProps> = observer(({success}) => {
         }
     }
     fetchAddress()
-  }, [])
+  }, [success])
 
   return (
     <div className='flex flex-col items-center'>

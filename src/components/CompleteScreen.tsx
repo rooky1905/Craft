@@ -23,7 +23,7 @@ const CompleteScreen: React.FC<CompleteScreenProps> = observer(({successFun}) =>
         }
     }
     fetchProducts()
-  }, [])
+  }, [successFun])
 
   return (
     <div className='flex flex-col items-center'>

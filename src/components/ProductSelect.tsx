@@ -25,7 +25,7 @@ const ProductSelect: React.FC<ProductSelectProps> = observer(({ success }) => {
         }
     }
     fetchProducts()
-  }, [])
+  }, [success])
 
   return (
     <div className='flex flex-col items-center'>
