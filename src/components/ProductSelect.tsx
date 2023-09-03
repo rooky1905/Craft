@@ -4,6 +4,7 @@ import store from '../store/store';
 import getProducts, { Product } from '../utils/products';
 import { CircularProgress } from '@mui/material';
 import SingleProduct from './SingleProduct';
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 interface ProductSelectProps {
   success: boolean
@@ -27,13 +28,17 @@ const ProductSelect: React.FC<ProductSelectProps> = observer(({ success }) => {
     fetchProducts()
   }, [success])
 
+  let rand : number; //set to value for which you want to throw error to check Error Boundary.
+
   return (
     <div className='flex flex-col items-center'>
       <h2 className="text-xl text-white font-semibold mb-4">Add Products</h2>
       {products ? 
         <div className='flex flex-row'>
-            {products.map((product) => {
-                return <SingleProduct key={product.id} product={product}/>
+            {products.map((product, index) => {
+                return <ErrorBoundary>
+                        <SingleProduct key={product.id} product={product} error={index===rand ? true : false}/>
+                       </ErrorBoundary>
             })}
         </div> :
         !error ? 

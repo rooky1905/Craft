@@ -8,11 +8,16 @@ import { Product } from '../utils/products';
 
 interface SingleProductProps {
   product: Product
+  error: boolean
 }
 
-const SingleProduct: React.FC<SingleProductProps> = observer(({product}) => {
+const SingleProduct: React.FC<SingleProductProps> = observer(({product, error}) => {
   const centralStore = store
   const quantity = centralStore.quantityProductId.get(product.id) ?? 0
+
+  if(error){
+    throw new Error('This is an error getting a single product.')
+  }
 
   return (
     <Card className={`w-40 m-2 ${quantity > 0 && "box-border border-2 border-blue-400"}`}>

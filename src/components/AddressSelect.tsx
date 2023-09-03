@@ -4,6 +4,7 @@ import store from '../store/store';
 import { CircularProgress } from '@mui/material';
 import getAddress, { Address } from '../utils/address';
 import SingleAddress from './SingleAddress';
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 interface AddressSelectProps {
   success: boolean
@@ -28,13 +29,17 @@ const AddressSelect: React.FC<AddressSelectProps> = observer(({success}) => {
     fetchAddress()
   }, [success])
 
+  let rand : number; //set to value for which you want to throw error to check Error Boundary.
+
   return (
     <div className='flex flex-col items-center'>
       <h2 className="text-xl text-white font-semibold mb-4">Select a delivery address</h2>
       {address ? 
         <div className='flex flex-row'>
-            {address.map((address) => {
-                return <SingleAddress key={address.id} address={address} selected={address.id === selectedAddress?.id}/>
+            {address.map((address, index) => {
+                return <ErrorBoundary>
+                        <SingleAddress key={address.id} address={address} error={index===rand ? true : false} selected={address.id === selectedAddress?.id}/>
+                       </ErrorBoundary>
             })}
         </div> :
         !error ? 

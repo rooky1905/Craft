@@ -7,10 +7,15 @@ import { Address } from '../utils/address';
 interface SingleAddressProps {
     address: Address
     selected: boolean
+    error: boolean
 }
 
-const SingleAddress: React.FC<SingleAddressProps> = observer(({address, selected}) => {
+const SingleAddress: React.FC<SingleAddressProps> = observer(({address, selected, error}) => {
   const centralStore = store
+
+  if(error){
+    throw new Error('This is an error getting a single address.')
+  }
 
   return (
     <Card onClick={()=>{centralStore.addAddress(address)}} className={`w-45 m-2 cursor-pointer ${selected && "box-border border-2 border-blue-400"}`}>
