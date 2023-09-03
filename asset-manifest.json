@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Craft/static/css/main.08f7035c.css",
+    "main.js": "/Craft/static/js/main.532c20da.js",
+    "index.html": "/Craft/index.html",
+    "main.08f7035c.css.map": "/Craft/static/css/main.08f7035c.css.map",
+    "main.532c20da.js.map": "/Craft/static/js/main.532c20da.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08f7035c.css",
+    "static/js/main.532c20da.js"
+  ]
+}
